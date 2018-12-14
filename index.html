@@ -1,1 +1,346 @@
-hallo world
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>player</title>
+		<style>
+			body {
+			background-image:url("http://www.de-held.nl/wp-content/uploads/2015/10/hd-houten-achtergrond-voor-windows-houten-planken-wallpaper-foto.jpg") ;
+			background-color: #cccccc;
+			}
+			.playerframe{
+			position:absolute;
+			top:50%;
+			left:50%;
+			transition: 1.3s;
+			}
+			.player{
+			position:absolute;
+			top:-50;
+			left:-250;
+			width:500;
+			height:100;
+			background-color:#dddddd;
+			 border-radius: 25px;
+			
+			
+			}
+			.playerpos2{
+			position:absolute;
+			top:20%;
+			left:50%;
+			transition: 1.3s;
+			}
+			
+			
+			.rotable{
+			position:absolute;
+			bottom:0;
+			left:20;
+			width:150;
+			height:150;
+			background-color:#dddddd;
+			 border-radius: 50%;
+			}
+			.plaat{
+			position:absolute;
+			bottom:3%;
+			left:3%;
+			width:94%;
+			height:94%;
+			background-color:#000000;
+			 border-radius: 50%;
+			transition: height 2s linear;
+		
+			}
+			
+	
+			
+			.plaat2{
+			position:absolute;
+			bottom:3%;
+			left:3%;
+			width:94%;
+			height:94%;
+			background-color:#000000;
+			 border-radius: 50%;
+			 	transition: height 2s linear;
+			animation: rotateAlbumArt 3s linear 0s infinite
+			
+			}
+			@keyframes rotateAlbumArt
+			{
+			0%{ transform: rotateZ(0); }
+
+			100%{ transform: rotateZ(360deg); }
+			}
+			
+			.knopie{
+			position: absolute;
+			background-image:url("https://static.thenounproject.com/png/404075-200.png");
+			  background-repeat: no-repeat;
+			background-size: 100%; 
+			left : 170;
+			top: 20;
+			height: 60;
+			width: 60;
+			outline: none;
+			border-radius: 10px;
+			}
+			.knopie:hover{
+			position: absolute;
+			background-image:url("https://static.thenounproject.com/png/404075-200.png");
+			  background-repeat: no-repeat;
+			background-size: 100%;
+			
+			left : 165;
+			top: 15;
+			height: 70;
+			width: 70;
+			outline: none;
+			border-radius: 25%;
+			}			
+			
+			.drager{
+			position:absolute;
+			left:-2;
+			top: -2;
+			width:200;
+			background:#7c7c7c;
+			
+			}
+			.dragerline{
+			position:absolute;
+			left:250;
+			top: 30;
+			width:200;
+			height: 20;
+			background:#7c7c7c;
+			
+			}
+			
+			.meertext{
+			position: absolute;
+			left: 250;
+			bottom :10;
+			width: 100;
+			height: 30;
+			background:#96dfff;
+			border-radius: 10px;
+			outline: none;
+			}
+			.meertext:hover{
+			position: absolute;
+			left: 250;
+			bottom :10;
+			width: 100;
+			height: 30;
+			background:#66d1ff;
+			border-radius: 10px;
+			outline: none;
+			}			
+			.text{
+			position: absolute;
+			top: -8;
+			left: 15;
+			}
+			.meer{
+			position:fixed;
+			top:130%;
+			left:35%;
+			width:30%;
+			height:60%;
+			background-color:#dddddd;
+			 border-radius: 25px;
+			 transition: 1.3s;
+			}
+			.meer2{
+			position:fixed;
+			top:30%;
+			left:35%;
+			width:30%;
+			height:60%;
+			background-color:#dddddd;
+			 border-radius: 25px;
+			 transition: 1.3s;
+			}
+			
+			.bu{
+			width: 100%;
+			height: 30;
+			}
+			
+			.nowplayingtext{
+			position: absolute;
+			left: 10px;
+			top: 10;
+			
+			}
+			.collorrange{
+			position: absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:5px;
+			background-color:#ff0000;
+			
+			
+			}
+			
+		</style>
+	</head>
+	<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=0.1, minimum-scale=0.66">
+	<body>
+	
+	<div id="player"class="playerframe">
+		<div class="player">
+			<div class="rotable">
+			<img id="plaatje"class="plaat" src="/1"></img>
+			</div>
+			<button class="knopie" onclick="play()"></button>
+			<div class="dragerline">
+			<div id ="collorrange"class="collorrange"></div>
+			<input type="range" min="1" max="100" value="1" class="drager" id="drager" onmouseup="up()"onmousedown="down()">
+			</div>
+			<button onclick="meerknop()" class="meertext">
+			<p class="text">meer music</p>
+			</button>
+			
+		</div>
+	</div>
+<div class="meer" id="meerlist">
+</br>
+</br>
+<p class="nowplayingtext"id="nowplaying">playing : funnysong</p>
+<br>
+<button class="bu"onclick="setsong('0')">funnysong</button>
+<hr>
+<button class="bu"onclick="setsong('1')">dubstep</button>
+<hr>
+<button class="bu"onclick="setsong('2')">happyrock</button>
+<hr>
+<button class="bu"onclick="setsong('3')">hey</button>
+<hr>
+<button class="bu"onclick="setsong('4')">retrosoul</button>
+
+
+
+</div>
+	
+
+		<script>
+	var audio = new Audio('/funnysong');
+	var ef = new Audio('https://freesound.org/data/previews/243/243034_1676145-lq.mp3');
+		
+					var i = 1
+				setInterval(function(){
+					if (played){
+				document.getElementById("plaatje").src = "/"+i
+				i++
+				if (i> 4 ){i = 1}
+				}
+				}, 5000);
+		
+		
+		
+		
+		
+		
+		
+		
+		var played = false
+	function play(){
+	if (played == false){
+	document.getElementById("plaatje").classList.add('plaat2');
+	ef.play()
+	audio.play();
+	played = true
+	}else{
+	document.getElementById("plaatje").classList.remove('plaat2');
+	ef.play()
+	audio.pause();
+	played = false
+	}
+	
+	}
+	
+	
+	var mousedown = false
+	function up () {
+	mousedown = false
+	}
+	function down(){
+	mousedown = true
+	}
+	
+	
+
+	
+	
+		//audio.currentTime 
+		//audio.duration
+		
+		
+		//100 / audio.duration * audio.currentTime 
+	
+		setInterval(function(){ 
+		if (mousedown) {
+			audio.currentTime = audio.duration / 100 * document.getElementById("drager").value
+			
+		}else {
+		document.getElementById("drager").value = 100 / audio.duration * audio.currentTime 
+		document.getElementById("collorrange").style.width = document.getElementById("drager").value * 2
+		}
+	
+		
+		
+		}, 100);
+		
+		var meeropen = false
+		function meerknop () {
+		if (meeropen) {
+		document.getElementById("player").classList.remove('playerpos2');
+		document.getElementById("meerlist").classList.add('meer');
+		document.getElementById("meerlist").classList.remove('meer2');
+		meeropen = false
+		}else{
+
+		document.getElementById("player").classList.add('playerpos2');
+		document.getElementById("meerlist").classList.add('meer2');
+		document.getElementById("meerlist").classList.remove('meer');
+		meeropen = true	
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		document.getElementById("meerlist").style.left = "10%"
+		document.getElementById("meerlist").style.width = "80%"
+		}
+		}
+		
+		}
+		
+		var musiclist = ['/funnysong','/dubstep','/happyrock','/hey','/retrosoul']
+		var namelist = ['funnysong','dubstep','happyrock','hey','retrosoul']
+		var onlist = 0
+		
+		
+		function setsong (data){
+		audio.pause
+		audio.src = musiclist[data]
+		onlist = data
+		
+		audio.currentTime = 0
+		document.getElementById("drager").value = 0
+		played = false
+		play()
+		document.getElementById("nowplaying").innerHTML = "playing : "+namelist[data]
+		}
+		
+		audio.onended = function() {
+		newsong = onlist += 1
+		setsong(newsong)
+		if (onlist >4 ){setsong(0)}
+		};
+		
+		
+			
+		</script>
+	</body>
+</html>
