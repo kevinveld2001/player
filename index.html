@@ -194,7 +194,7 @@
 	<div id="player"class="playerframe">
 		<div class="player">
 			<div class="rotable">
-			<img id="plaatje"class="plaat" src="/1"></img>
+			<img id="plaatje"class="plaat" src="Music1.jpg"></img>
 			</div>
 			<button class="knopie" onclick="play()"></button>
 			<div class="dragerline">
@@ -234,7 +234,7 @@
 					var i = 1
 				setInterval(function(){
 					if (played){
-				document.getElementById("plaatje").src = "/"+i
+				document.getElementById("plaatje").src = "Music"+i+".jpg"
 				i++
 				if (i> 4 ){i = 1}
 				}
@@ -316,7 +316,7 @@
 		
 		}
 		
-		var musiclist = ['/funnysong','/dubstep','/happyrock','/hey','/retrosoul']
+		var musiclist = ['bensound-funnysong.mp3','bensound-dubstep.mp3','bensound-happyrock.mp3','bensound-hey.mp3','bensound-retrosoul.mp3']
 		var namelist = ['funnysong','dubstep','happyrock','hey','retrosoul']
 		var onlist = 0
 		
